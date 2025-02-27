@@ -1,0 +1,10 @@
+# Unity Generated Files
+Library/
+Temp/
+Logs/
+Builds/
+.vs/
+.idea/
+.vscode/
+.DS_Store
+*.unitypackage
