@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource), typeof(Collider))]
 public class CargoCollector : MonoBehaviour
 {
-    // Reference to the visual sphere representing cargo
+    // The GameObject that contains the visible cargo (i.e., its MeshRenderer)
     public GameObject cargoVisibility;
-
-    // Reference to the TextMeshPro object for the on-screen message
+    // The UI text element to display the message from the Canvas
     public TMP_Text cargoMessageText;
-
-    // The tag on your player ship. Adjust as needed.
+    // The tag that must match the player ship's tag
     [SerializeField] private string playerShipTag = "PlayerShip";
+    
+    private AudioSource audioSource;
 
     private void Start()
     {
-        // Make sure the cargo message is disabled at the start
+        audioSource = GetComponent<AudioSource>();
+
+        // Ensure the message is hidden at start
         if (cargoMessageText != null)
         {
             cargoMessageText.gameObject.SetActive(false);
@@ -25,23 +28,31 @@ public class CargoCollector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the trigger is the player ship
+        // Check if the colliding object is the player ship
         if (other.CompareTag(playerShipTag))
         {
-            // Disable the cargo visibility sphere
+            // Instead of disabling the entire GameObject, disable only its MeshRenderer
             if (cargoVisibility != null)
             {
-                cargoVisibility.SetActive(false);
+                MeshRenderer meshRenderer = cargoVisibility.GetComponent<MeshRenderer>();
+                if (meshRenderer != null)
+                {
+                    meshRenderer.enabled = false;
+                }
             }
 
-            // Enable and update the TextMeshPro message
+            // Display the cargo collected message
             if (cargoMessageText != null)
             {
                 cargoMessageText.gameObject.SetActive(true);
                 cargoMessageText.text = "Cargo Collected!";
-
-                // Hide the message again after 3 seconds
                 StartCoroutine(HideMessageAfterDelay(3f));
+            }
+
+            // Play the cargo collected audio clip
+            if (audioSource != null)
+            {
+                audioSource.Play();
             }
         }
     }
