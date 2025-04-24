@@ -10,7 +10,7 @@ public class StoryCutsceneController : MonoBehaviour
     public Transform cameraTransform;
     public Transform cameraTarget;
     public GameObject ship;
-    public string gameSceneName = "Game";
+    public string gameSceneName = "Level1";
     //public AudioSource launchSound;
 
 
@@ -49,6 +49,6 @@ public class StoryCutsceneController : MonoBehaviour
         dialogueText.DOFade(0f, 1f);
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Level1");
     }
 }
