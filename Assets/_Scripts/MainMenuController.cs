@@ -3,29 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class MainMenuController : MonoBehaviour
 {
-  private AudioSource audioSource;
+    private AudioSource audioSource;
 
-  void Start()
-{
-    audioSource = GetComponent<AudioSource>();
-}
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
+    // Called by the "Start" button
     public void ButtonHandlerPlay()
     {
         StartCoroutine(LoadGameScene());
     }
 
+    // Called by the "Story Mode" button
+    public void ButtonHandlerStoryMode()
+    {
+        StartCoroutine(LoadStoryModeScene());
+    }
+
     IEnumerator LoadGameScene()
     {
-        audioSource.Play(); // Play the sound
+        audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1); // This loads scene by Build Index
+        AsyncOperation operation = SceneManager.LoadSceneAsync(1); // By build index
         while (!operation.isDone)
         {
-            yield return null; // This waits until the scene fully loads
+            yield return null;
+        }
+    }
+
+    IEnumerator LoadStoryModeScene()
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        AsyncOperation operation = SceneManager.LoadSceneAsync("StoryModeMenu"); // By name
+        while (!operation.isDone)
+        {
+            yield return null;
         }
     }
 }
