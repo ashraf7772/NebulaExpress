@@ -16,7 +16,7 @@ public class TutorialPromptTrigger : MonoBehaviour
         // Change message based on level
         if (currentScene == "Level2")
         {
-            messageToShow = "This is now Level 2. Collect all 6 Cargos to proceed to Level 3.";
+            messageToShow = "LEVEL 2 - NEW SHIP. Collect all 6 Cargos to proceed to Level 3.";
         }
     }
 

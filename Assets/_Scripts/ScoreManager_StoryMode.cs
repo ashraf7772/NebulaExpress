@@ -22,7 +22,7 @@ public class ScoreManager_StoryMode : MonoBehaviour
         if (PlayerPrefs.HasKey("Story_Score"))
             LoadScore();  //Yo remind yourself, this loads the saved score when the scene starts
 
-            string currentScene = SceneManager.GetActiveScene().name;
+        string currentScene = SceneManager.GetActiveScene().name;
 
         if (currentScene == "Level2")
         {
@@ -35,6 +35,11 @@ public class ScoreManager_StoryMode : MonoBehaviour
     {
         score += amount;
         UpdateScoreUI();
+
+        if (score >= 700 && SceneManager.GetActiveScene().name == "Level2")
+        {
+        StartCoroutine(LoadLevel3AfterDelay(2f)); 
+        }
     }
 
     private void UpdateScoreUI()
@@ -54,4 +59,11 @@ public class ScoreManager_StoryMode : MonoBehaviour
         score = PlayerPrefs.GetInt("Story_Score", 0);
         UpdateScoreUI();
     }
+
+    private IEnumerator LoadLevel3AfterDelay(float delay)
+    {
+    yield return new WaitForSeconds(delay);
+    SceneManager.LoadScene("Level3");
+    }
+
 }
