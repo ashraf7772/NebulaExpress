@@ -1,23 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StoryMenuController : MonoBehaviour
 {
-    public GameObject cutsceneController; // Drag the CutsceneController object here
-    public GameObject menuUI; 
+    public GameObject cutsceneController;
+    public GameObject menuUI;
 
     public void OnNewGamePressed()
     {
-        // Activate the cutscene when New Game is clicked
         Debug.Log("New Game pressed!");
-        menuUI.SetActive(false); 
+
+        // Clear saved score
+        PlayerPrefs.DeleteKey("Story_Score");
+        PlayerPrefs.Save();
+
+        menuUI.SetActive(false);
         cutsceneController.SetActive(true);
     }
 
     public void OnLoadGamePressed()
     {
-        // Add load logic here later
-        Debug.Log("Load Game pressed (functionality coming soon)");
+        Debug.Log("Load Game pressed!");
+        
+        if (PlayerPrefs.HasKey("Story_Score"))
+        {
+            SceneManager.LoadScene("Level1");
+        }
+        else
+        {
+            Debug.LogWarning("No save found! Starting fresh or disable Load Game.");
+            // Optionally show a message to the player here
+        }
     }
 }

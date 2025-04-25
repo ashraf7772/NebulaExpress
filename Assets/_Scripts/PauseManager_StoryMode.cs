@@ -45,6 +45,12 @@ public class PauseManager_StoryMode : MonoBehaviour
 
     public void SaveGame()
     {
-        ScoreManager_StoryMode.Instance.SaveScore(); // Covered in step 7
+        ScoreManager_StoryMode.Instance.SaveScore(); 
+    }
+
+    public void ResetSave()
+    {
+    PlayerPrefs.DeleteKey("Story_Score");
+    PlayerPrefs.Save();
     }
 }

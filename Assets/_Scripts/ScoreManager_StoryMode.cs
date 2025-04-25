@@ -16,6 +16,12 @@ public class ScoreManager_StoryMode : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Story_Score"))
+            LoadScore();  //Yo remind yourself, this loads the saved score when the scene starts
+    }
+
     public void AddScore(int amount)
     {
         score += amount;
