@@ -27,4 +27,16 @@ public class ScoreManager_StoryMode : MonoBehaviour
         if (scoreText != null)
             scoreText.text = "Score: " + score;
     }
+
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("Story_Score", score);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadScore()
+    {
+        score = PlayerPrefs.GetInt("Story_Score", 0);
+        UpdateScoreUI();
+    }
 }
