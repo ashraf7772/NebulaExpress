@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager_StoryMode : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class ScoreManager_StoryMode : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Story_Score"))
             LoadScore();  //Yo remind yourself, this loads the saved score when the scene starts
+
+            string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "Level2")
+        {
+            score = 100; // Start with 100 for dev
+            UpdateScoreUI();
+        }
     }
 
     public void AddScore(int amount)

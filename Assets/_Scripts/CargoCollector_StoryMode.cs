@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource), typeof(Collider))]
 public class CargoCollector_StoryMode : MonoBehaviour
@@ -14,7 +15,8 @@ public class CargoCollector_StoryMode : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        if (cargoMessageText != null) cargoMessageText.gameObject.SetActive(false);
+        if (cargoMessageText != null)
+            cargoMessageText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,15 +38,28 @@ public class CargoCollector_StoryMode : MonoBehaviour
 
             if (audioSource != null) audioSource.Play();
 
-            // ADD TO SCORE
+            // Add to score
             if (ScoreManager_StoryMode.Instance != null)
                 ScoreManager_StoryMode.Instance.AddScore(100);
+
+            // Only load next level if not in Level2
+            if (SceneManager.GetActiveScene().name != "Level2")
+            {
+                StartCoroutine(LoadNextLevelAfterDelay(2f));
+            }
         }
     }
 
-    private System.Collections.IEnumerator HideMessageAfterDelay(float delay)
+    private IEnumerator HideMessageAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (cargoMessageText != null) cargoMessageText.gameObject.SetActive(false);
+        if (cargoMessageText != null)
+            cargoMessageText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator LoadNextLevelAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("Level2");
     }
 }
