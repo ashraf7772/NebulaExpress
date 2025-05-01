@@ -1,5 +1,6 @@
-Font Squirrel website 
-Title Font on Menu - Membra 
+Membra Font
+Font Squirrel
+Title Font on Menu Scene - Membra 
 Link - https://www.fontsquirrel.com/fonts/list/find_fonts?q%5Bterm%5D=science&q%5Bsearch_check%5D=Y
 
 Hi-Rez Spaceships Creator Free Sample
@@ -17,3 +18,34 @@ Link - https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-
 *FREE* Skyboxes - Space
 DOGMATIC
 Link - https://assetstore.unity.com/packages/2d/textures-materials/sky/free-skyboxes-space-178953
+
+FREE Casual Game SFX Pack
+Dustyroom
+Link - https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116
+
+Absolutely Free Music
+Vertix Studio
+Link - https://assetstore.unity.com/packages/audio/music/absolutely-free-music-4883
+
+Deep Space Skybox Pack
+Sean Duffy
+Link - https://assetstore.unity.com/packages/2d/textures-materials/deep-space-skybox-pack-11056
+
+Earth & Planets skyboxes
+Stagit East
+Link - https://assetstore.unity.com/packages/2d/textures-materials/sky/earth-planets-skyboxes-53752
+
+Stylized Cute Alien Character
+gklp07
+Link - https://assetstore.unity.com/packages/3d/characters/creatures/stylized-cute-alien-character-247126
+
+Alien Character
+Maksim Bugrimov
+Link - https://assetstore.unity.com/packages/3d/characters/creatures/alien-character-20838
+
+Alien Ships Pack
+Autarca
+Link - https://assetstore.unity.com/packages/3d/vehicles/space/alien-ships-pack-131137
+
+
+

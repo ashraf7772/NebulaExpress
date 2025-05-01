@@ -15,6 +15,14 @@ public class EnemyAI : MonoBehaviour
     private Animator animator;
     private bool isDead = false;
 
+    [Header("Shooting")]
+    public GameObject projectilePrefab;
+    public Transform  firePoint;          
+    public float      fireCooldown = 2f;  
+
+    float lastFireTime = -999f;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -38,16 +46,17 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("isMoving", false);
             animator.SetBool("isAttacking", true);
             // I need to put attack logic here (like shooting or cooldown etc.)
-            if (Time.time > lastAttackTime + attackCooldown)
+            if (Time.time >= lastFireTime + fireCooldown)
             {
-                lastAttackTime = Time.time;
-    
+                lastFireTime = Time.time;
+                
+                Invoke(nameof(FireProjectile), 0.15f);
                 // Try damaging Me/The Player
-                PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(10); 
-                }
+                // PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+                // if (playerHealth != null)
+                // {
+                //     playerHealth.TakeDamage(10); 
+                // }
             }
         }
         else if (distance <= detectionRange)
@@ -82,4 +91,14 @@ public class EnemyAI : MonoBehaviour
             // Maybe?: Destroy(gameObject, 3f); // Clean up after death
         }
     }
+
+    void FireProjectile()
+    {
+        if (!projectilePrefab || !firePoint) return;
+
+        Instantiate(projectilePrefab,
+                    firePoint.position,
+                    firePoint.rotation);
+    }
+
 }

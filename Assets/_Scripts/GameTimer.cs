@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
-    // Starting time in seconds (15 seconds for your level)
+    // Starting time in seconds (15 seconds)
     public float timeRemaining = 15f;
     
     // Reference to the Text component that will display the timer
@@ -12,7 +12,7 @@ public class GameTimer : MonoBehaviour
 
     void Start()
     {
-        // Get the Text component attached to this GameObject
+        // Get Text component attached to GameObject
         timerText = GetComponent<Text>();
         if (timerText == null)
         {
@@ -25,23 +25,23 @@ public class GameTimer : MonoBehaviour
     {
         if (timeRemaining > 0)
         {
-            // Decrease timeRemaining by the elapsed time since last frame
+            // 
             timeRemaining -= Time.deltaTime;
             UpdateTimerDisplay();
         }
         else
         {
-            // Clamp timeRemaining to 0 and update the display
+            // 
             timeRemaining = 0;
             UpdateTimerDisplay();
             
-            // Time is up – load the main menu scene.
-            // Make sure the scene name "Menu" matches the actual scene name in your Build Settings.
+            // 
+            // Ma
             SceneManager.LoadScene("Menu");
         }
     }
 
-    // Update the timer display to show whole seconds
+    // 
     void UpdateTimerDisplay()
     {
         if (timerText != null)

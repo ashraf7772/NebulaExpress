@@ -29,6 +29,11 @@ public class ScoreManager_StoryMode : MonoBehaviour
             score = 100; // Start with 100 for dev
             UpdateScoreUI();
         }
+        if (currentScene == "Level3")
+        {
+            score = 700; 
+            UpdateScoreUI();
+        }
     }
 
     public void AddScore(int amount)

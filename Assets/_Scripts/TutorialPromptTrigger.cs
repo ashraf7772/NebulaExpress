@@ -18,6 +18,10 @@ public class TutorialPromptTrigger : MonoBehaviour
         {
             messageToShow = "LEVEL 2 - NEW SHIP. Collect all 6 Cargos to proceed to Level 3.";
         }
+        if (currentScene == "Level3")
+        {
+            messageToShow = "LEVEL 3 - COMBAT. Defeat the Alien.";
+        }
     }
 
     private void OnTriggerEnter(Collider other)
